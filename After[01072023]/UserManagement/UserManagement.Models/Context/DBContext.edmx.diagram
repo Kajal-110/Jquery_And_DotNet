@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d784bae01dfb44759ca610d8aab0f5df" Name="Diagram1">
+        <EntityTypeShape EntityType="Pooja326MVC3Model.City" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="Pooja326MVC3Model.Country" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Pooja326MVC3Model.States" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <AssociationConnector Association="Pooja326MVC3Model.FK__City__CountryId__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="Pooja326MVC3Model.FK__City__StateId__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="Pooja326MVC3Model.FK__States__CountryI__29572725" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Pooja326MVC3Model.User" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="Pooja326MVC3Model.ImageTable" Width="1.5" PointX="9.625" PointY="1.75" />
+        <AssociationConnector Association="Pooja326MVC3Model.FK__ImageTabl__UserI__300424B4" />
+        <AssociationConnector Association="Pooja326MVC3Model.FK__User__CityId__32E0915F" />
+        <AssociationConnector Association="Pooja326MVC3Model.FK__User__CountryId__30F848ED" />
+        <AssociationConnector Association="Pooja326MVC3Model.FK__User__StateId__31EC6D26" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

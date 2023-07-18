@@ -1,0 +1,41 @@
+﻿@model E_Commerce.Models.Model.RegistrationModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+
+<h4 style="color:red">@TempData["Error"]</h4>
+<form action="/Registration/Login" method="post">
+    <div class="input-group mb-3">
+        <input type="email" class="form-control" placeholder="Email" name="Email">
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+            </div>
+
+        </div>
+    </div>
+
+    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+    <br />
+    <div class="input-group mb-3">
+        <input type="password" class="form-control" placeholder="Password" name="Password">
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+            </div>
+        </div>
+    </div>
+    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+    <br />
+    <div>
+        <button type="submit" class="btn btn-primary" value="create">Sign In</button>
+    </div>
+
+</form>
+<p class="mb-0">
+    @*<a href="register.html" class="text-center">Register a new membership</a>*@
+    @Html.ActionLink("Register a new membership", "Index")
+
+</p>

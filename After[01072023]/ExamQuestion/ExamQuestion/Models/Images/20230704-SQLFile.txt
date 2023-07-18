@@ -1,0 +1,68 @@
+create database STUDENTSDB;
+
+use STUDENTSDB;
+
+create table StudentAdmissionDetail(
+StudentId int primary key identity(1,1),
+StudentFirstName varchar(250),
+StudentLastName varchar(250),
+StudentDOB datetime not null,
+StudentAdherNumber varchar(12) unique ,
+StudentClassOfAdmission int not null,
+StudentMotherName varchar(250),
+StudentFatherName varchar(250),
+StudentParmanentAddress nvarchar(max),
+StudentCurrentAddress nvarchar(max),
+StudentGender varchar(50),
+StudentBloodGroup bit,
+studentAge int ,
+StudentMediumOfAdmission varchar(50),
+StudentCountryOfCitizenship varchar(100),
+StudentFatherQualification varchar(50),
+StudentFatherOccupation varchar(50),
+StudentFatherMobileNo  varchar(50),
+StudentMotherQualification varchar(50),
+StudentMotherOccupation varchar(50),
+StudentMotherMobileNo  varchar(50)
+)
+
+INSERT INTO [dbo].[StudentAdmissionDetail]
+           ([StudentFirstName]
+           ,[StudentLastName]
+           ,[StudentDOB]
+           ,[StudentAdherNumber]
+           ,[StudentClassOfAdmission]
+           ,[StudentMotherName]
+           ,[StudentFatherName]
+           ,[StudentParmanentAddress]
+           ,[StudentCurrentAddress]
+           ,[StudentGender]
+           ,[StudentBloodGroup]
+           ,[studentAge]
+           ,[StudentMediumOfAdmission]
+           ,[StudentCountryOfCitizenship]
+           ,[StudentFatherQualification]
+           ,[StudentFatherOccupation]
+           ,[StudentFatherMobileNo]
+           ,[StudentMotherQualification]
+           ,[StudentMotherOccupation]
+           ,[StudentMotherMobileNo])
+     VALUES
+            ('Deepak ','patel',2007-11-04,'103048456701',8,'neelam',
+			'patel','jabalpur','jabalpur','female','',15,'english','indian','bsc','private worker',
+			'7949653942','BSC','housewife','1687145543')
+GO
+
+
+select * from StudentAdmissionDetail;
+
+ALTER TABLE StudentAdmissionDetail
+ALTER COLUMN StudentBloodGroup varchar(10);
+
+update  StudentAdmissionDetail set StudentBloodGroup='B+'
+where StudentFirstName='Kajal';
+
+ALTER TABLE StudentAdmissionDetail
+ADD CONSTRAINT CHK_studentAge CHECK (studentAge > 5);
+
+update StudentAdmissionDetail set StudentFatherName='XYZ'

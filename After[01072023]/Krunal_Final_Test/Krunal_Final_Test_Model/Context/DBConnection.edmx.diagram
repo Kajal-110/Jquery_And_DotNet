@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="02f6ad6783b849a0a72abf4ebdc0d242" Name="Diagram1">
+        <EntityTypeShape EntityType="KrunalFinalTestModel.CityTable" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="KrunalFinalTestModel.CountryTable" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="KrunalFinalTestModel.GenderTable" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KrunalFinalTestModel.Hobbies" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="KrunalFinalTestModel.StateTable" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="KrunalFinalTestModel.User_Registration" Width="1.5" PointX="7.5" PointY="4.25" IsExpanded="true" />
+        <AssociationConnector Association="KrunalFinalTestModel.FK__CityTable__Count__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="KrunalFinalTestModel.FK__CityTable__State__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="KrunalFinalTestModel.FK__User_Regi__CityI__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="KrunalFinalTestModel.FK__StateTabl__Count__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="KrunalFinalTestModel.FK__User_Regi__Count__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="KrunalFinalTestModel.FK__User_Regi__Gende__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="KrunalFinalTestModel.FK__User_Regi__Hobbi__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="KrunalFinalTestModel.FK__User_Regi__State__3D5E1FD2" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

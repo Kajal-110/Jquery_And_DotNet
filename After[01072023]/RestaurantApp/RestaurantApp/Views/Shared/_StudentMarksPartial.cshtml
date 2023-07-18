@@ -1,0 +1,24 @@
+﻿@model IEnumerable<RestaurantApp.ViewModel.StudentMarksModel>
+
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            
+            <th>Subject Name</th>
+            <th>Total Mark</th>
+            <th>Mark Obtained</th>
+            <th>Percentege</th>
+            
+        </tr>
+    </thead>
+    @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@item.SubjectName</td>
+                    <td>@item.TotalMarks</td>
+                    <td>@item.MarkObtained</td>
+                    <td>@item.Percentage</td>
+                  
+                </tr>
+            }
+</table>

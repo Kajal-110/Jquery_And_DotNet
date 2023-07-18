@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="03c7603b1cab46c7a62aa8352bf5dcdd" Name="Diagram1">
+        <EntityTypeShape EntityType="Kajal_PatelModel.City" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="Kajal_PatelModel.Country" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Kajal_PatelModel.Registration" Width="1.5" PointX="7.5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Kajal_PatelModel.State" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <AssociationConnector Association="Kajal_PatelModel.FK__City__stateId__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="Kajal_PatelModel.FK__Registrat__CityI__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="Kajal_PatelModel.FK__Registrat__Count__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="Kajal_PatelModel.FK__State__countryId__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="Kajal_PatelModel.FK__Registrat__State__2D27B809" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Kajal_PatelModel.Category" Width="1.5" PointX="3.375" PointY="1.25" />
+        <EntityTypeShape EntityType="Kajal_PatelModel.Product" Width="1.5" PointX="5.625" PointY="0.875" />
+        <AssociationConnector Association="Kajal_PatelModel.FK__Product__categor__32E0915F" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

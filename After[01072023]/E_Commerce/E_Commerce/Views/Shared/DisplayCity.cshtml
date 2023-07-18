@@ -1,0 +1,14 @@
+﻿
+@model E_Commerce.Models.DbContext.City
+
+
+<option value=""> --Select City --</option>
+@if (ViewBag.CityList != null)
+{
+    foreach (var i in ViewBag.CityList)
+    {
+        <option value="@i.Value"> @i.Text</option>
+    }
+}
+
+

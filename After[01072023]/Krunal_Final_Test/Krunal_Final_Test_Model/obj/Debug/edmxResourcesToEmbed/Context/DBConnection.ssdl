@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KrunalFinalTestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CityTable">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityName" Type="varchar" MaxLength="50" />
+    <Property Name="StateId" Type="int" />
+    <Property Name="CountryId" Type="int" />
+  </EntityType>
+  <EntityType Name="CountryTable">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CountryName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="GenderTable">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GenderName" Type="varchar" MaxLength="6" />
+  </EntityType>
+  <EntityType Name="Hobbies">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HobbyName" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="StateTable">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StateName" Type="varchar" MaxLength="50" />
+    <Property Name="CountryId" Type="int" />
+  </EntityType>
+  <EntityType Name="User_Registration">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="30" />
+    <Property Name="LastName" Type="varchar" MaxLength="30" />
+    <Property Name="Email" Type="varchar" MaxLength="30" />
+    <Property Name="Password" Type="varchar" MaxLength="30" />
+    <Property Name="DOB" Type="date" />
+    <Property Name="Address" Type="varchar" MaxLength="30" />
+    <Property Name="CountryId" Type="int" />
+    <Property Name="StateId" Type="int" />
+    <Property Name="CityId" Type="int" />
+    <Property Name="PhotoPath" Type="varchar(max)" />
+    <Property Name="Docpath" Type="varchar(max)" />
+    <Property Name="Gender" Type="int" />
+    <Property Name="Hobbies" Type="int" />
+  </EntityType>
+  <Association Name="FK__CityTable__Count__2A4B4B5E">
+    <End Role="CountryTable" Type="Self.CountryTable" Multiplicity="0..1" />
+    <End Role="CityTable" Type="Self.CityTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CountryTable">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CityTable">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CityTable__State__29572725">
+    <End Role="StateTable" Type="Self.StateTable" Multiplicity="0..1" />
+    <End Role="CityTable" Type="Self.CityTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateTable">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CityTable">
+        <PropertyRef Name="StateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__StateTabl__Count__267ABA7A">
+    <End Role="CountryTable" Type="Self.CountryTable" Multiplicity="0..1" />
+    <End Role="StateTable" Type="Self.StateTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CountryTable">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="StateTable">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__User_Regi__CityI__3E52440B">
+    <End Role="CityTable" Type="Self.CityTable" Multiplicity="0..1" />
+    <End Role="User_Registration" Type="Self.User_Registration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CityTable">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="User_Registration">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__User_Regi__Count__3C69FB99">
+    <End Role="CountryTable" Type="Self.CountryTable" Multiplicity="0..1" />
+    <End Role="User_Registration" Type="Self.User_Registration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CountryTable">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="User_Registration">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__User_Regi__Gende__3F466844">
+    <End Role="GenderTable" Type="Self.GenderTable" Multiplicity="0..1" />
+    <End Role="User_Registration" Type="Self.User_Registration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GenderTable">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="User_Registration">
+        <PropertyRef Name="Gender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__User_Regi__Hobbi__403A8C7D">
+    <End Role="Hobbies" Type="Self.Hobbies" Multiplicity="0..1" />
+    <End Role="User_Registration" Type="Self.User_Registration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hobbies">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="User_Registration">
+        <PropertyRef Name="Hobbies" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__User_Regi__State__3D5E1FD2">
+    <End Role="StateTable" Type="Self.StateTable" Multiplicity="0..1" />
+    <End Role="User_Registration" Type="Self.User_Registration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateTable">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="User_Registration">
+        <PropertyRef Name="StateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KrunalFinalTestModelStoreContainer">
+    <EntitySet Name="CityTable" EntityType="Self.CityTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CountryTable" EntityType="Self.CountryTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GenderTable" EntityType="Self.GenderTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Hobbies" EntityType="Self.Hobbies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StateTable" EntityType="Self.StateTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User_Registration" EntityType="Self.User_Registration" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__CityTable__Count__2A4B4B5E" Association="Self.FK__CityTable__Count__2A4B4B5E">
+      <End Role="CountryTable" EntitySet="CountryTable" />
+      <End Role="CityTable" EntitySet="CityTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CityTable__State__29572725" Association="Self.FK__CityTable__State__29572725">
+      <End Role="StateTable" EntitySet="StateTable" />
+      <End Role="CityTable" EntitySet="CityTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK__StateTabl__Count__267ABA7A" Association="Self.FK__StateTabl__Count__267ABA7A">
+      <End Role="CountryTable" EntitySet="CountryTable" />
+      <End Role="StateTable" EntitySet="StateTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK__User_Regi__CityI__3E52440B" Association="Self.FK__User_Regi__CityI__3E52440B">
+      <End Role="CityTable" EntitySet="CityTable" />
+      <End Role="User_Registration" EntitySet="User_Registration" />
+    </AssociationSet>
+    <AssociationSet Name="FK__User_Regi__Count__3C69FB99" Association="Self.FK__User_Regi__Count__3C69FB99">
+      <End Role="CountryTable" EntitySet="CountryTable" />
+      <End Role="User_Registration" EntitySet="User_Registration" />
+    </AssociationSet>
+    <AssociationSet Name="FK__User_Regi__Gende__3F466844" Association="Self.FK__User_Regi__Gende__3F466844">
+      <End Role="GenderTable" EntitySet="GenderTable" />
+      <End Role="User_Registration" EntitySet="User_Registration" />
+    </AssociationSet>
+    <AssociationSet Name="FK__User_Regi__Hobbi__403A8C7D" Association="Self.FK__User_Regi__Hobbi__403A8C7D">
+      <End Role="Hobbies" EntitySet="Hobbies" />
+      <End Role="User_Registration" EntitySet="User_Registration" />
+    </AssociationSet>
+    <AssociationSet Name="FK__User_Regi__State__3D5E1FD2" Association="Self.FK__User_Regi__State__3D5E1FD2">
+      <End Role="StateTable" EntitySet="StateTable" />
+      <End Role="User_Registration" EntitySet="User_Registration" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

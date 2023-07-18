@@ -1,0 +1,14 @@
+﻿
+
+
+@model E_Commerce.Models.DbContext.State
+
+
+<option value=""> --Select State --</option>
+@if (ViewBag.StateList != null)
+{
+    foreach (var i in ViewBag.StateList)
+    {
+        <option value="@i.Value"> @i.Text</option>
+    }
+}

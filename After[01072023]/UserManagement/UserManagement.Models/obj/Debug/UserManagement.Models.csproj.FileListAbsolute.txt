@@ -1,0 +1,12 @@
+C:\Users\sit308\source\repos\UserManagement\UserManagement.Models\bin\Debug\UserManagement.Models.dll.config
+C:\Users\sit308\source\repos\UserManagement\UserManagement.Models\bin\Debug\UserManagement.Models.dll
+C:\Users\sit308\source\repos\UserManagement\UserManagement.Models\bin\Debug\UserManagement.Models.pdb
+C:\Users\sit308\source\repos\UserManagement\UserManagement.Models\bin\Debug\EntityFramework.dll
+C:\Users\sit308\source\repos\UserManagement\UserManagement.Models\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\sit308\source\repos\UserManagement\UserManagement.Models\bin\Debug\EntityFramework.xml
+C:\Users\sit308\source\repos\UserManagement\UserManagement.Models\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\sit308\source\repos\UserManagement\UserManagement.Models\obj\Debug\UserManagement.Models.csproj.AssemblyReference.cache
+C:\Users\sit308\source\repos\UserManagement\UserManagement.Models\obj\Debug\UserManagement.Models.csproj.CoreCompileInputs.cache
+C:\Users\sit308\source\repos\UserManagement\UserManagement.Models\obj\Debug\UserManagement.Models.csproj.CopyComplete
+C:\Users\sit308\source\repos\UserManagement\UserManagement.Models\obj\Debug\UserManagement.Models.dll
+C:\Users\sit308\source\repos\UserManagement\UserManagement.Models\obj\Debug\UserManagement.Models.pdb

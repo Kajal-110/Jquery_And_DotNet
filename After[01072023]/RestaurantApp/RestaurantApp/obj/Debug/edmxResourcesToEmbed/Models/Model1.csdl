@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KajalPatel_01_07_2023Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Order" Relationship="KajalPatel_01_07_2023Model.FK__Order__CustomerI__5165187F" FromRole="Customer" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Item">
+    <Key>
+      <PropertyRef Name="ItemId" />
+    </Key>
+    <Property Name="ItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ItemName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
+    <NavigationProperty Name="OrderDetail" Relationship="KajalPatel_01_07_2023Model.FK__OrderDeta__ItemI__5535A963" FromRole="Item" ToRole="OrderDetail" />
+    <NavigationProperty Name="Transactions" Relationship="KajalPatel_01_07_2023Model.FK__Transacti__ItemI__5812160E" FromRole="Item" ToRole="Transactions" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="PaymentId" />
+    </Key>
+    <Property Name="PaymentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PaymentType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Order" Relationship="KajalPatel_01_07_2023Model.FK__Order__PaymentId__5070F446" FromRole="Payment" ToRole="Order" />
+  </EntityType>
+  <EntityContainer Name="KajalPatel_01_07_2023Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Customer" EntityType="Self.Customer" />
+    <EntitySet Name="Item" EntityType="Self.Item" />
+    <EntitySet Name="Payment" EntityType="Self.Payment" />
+    <EntitySet Name="Order" EntityType="KajalPatel_01_07_2023Model.Order" />
+    <EntitySet Name="OrderDetail" EntityType="KajalPatel_01_07_2023Model.OrderDetail" />
+    <EntitySet Name="Transactions" EntityType="KajalPatel_01_07_2023Model.Transactions" />
+    <AssociationSet Name="FK__Order__CustomerI__5165187F" Association="KajalPatel_01_07_2023Model.FK__Order__CustomerI__5165187F">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderDeta__ItemI__5535A963" Association="KajalPatel_01_07_2023Model.FK__OrderDeta__ItemI__5535A963">
+      <End Role="Item" EntitySet="Item" />
+      <End Role="OrderDetail" EntitySet="OrderDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__ItemI__5812160E" Association="KajalPatel_01_07_2023Model.FK__Transacti__ItemI__5812160E">
+      <End Role="Item" EntitySet="Item" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order__PaymentId__5070F446" Association="KajalPatel_01_07_2023Model.FK__Order__PaymentId__5070F446">
+      <End Role="Payment" EntitySet="Payment" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderDeta__Order__5441852A" Association="KajalPatel_01_07_2023Model.FK__OrderDeta__Order__5441852A">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="OrderDetail" EntitySet="OrderDetail" />
+    </AssociationSet>
+    <EntitySet Name="Exam" EntityType="KajalPatel_01_07_2023Model.Exam" />
+    <EntitySet Name="StudentDetails" EntityType="KajalPatel_01_07_2023Model.StudentDetails" />
+    <EntitySet Name="StudentMaster" EntityType="KajalPatel_01_07_2023Model.StudentMaster" />
+    <EntitySet Name="Subject" EntityType="KajalPatel_01_07_2023Model.Subject" />
+    <AssociationSet Name="FK__StudentMa__ExamI__5FB337D6" Association="KajalPatel_01_07_2023Model.FK__StudentMa__ExamI__5FB337D6">
+      <End Role="Exam" EntitySet="Exam" />
+      <End Role="StudentMaster" EntitySet="StudentMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK__StudentDe__Stude__6383C8BA" Association="KajalPatel_01_07_2023Model.FK__StudentDe__Stude__6383C8BA">
+      <End Role="StudentMaster" EntitySet="StudentMaster" />
+      <End Role="StudentDetails" EntitySet="StudentDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__StudentDe__Subje__628FA481" Association="KajalPatel_01_07_2023Model.FK__StudentDe__Subje__628FA481">
+      <End Role="Subject" EntitySet="Subject" />
+      <End Role="StudentDetails" EntitySet="StudentDetails" />
+    </AssociationSet>
+    <EntitySet Name="Customer1" EntityType="KajalPatel_01_07_2023Model.Customer1" />
+    <EntitySet Name="Orders" EntityType="KajalPatel_01_07_2023Model.Orders" />
+    <AssociationSet Name="FK__Orders__Customer__72C60C4A" Association="KajalPatel_01_07_2023Model.FK__Orders__Customer__72C60C4A">
+      <End Role="Customer1" EntitySet="Customer1" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PaymentId" Type="Int32" />
+    <Property Name="CustomerId" Type="Int32" />
+    <Property Name="OrderNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="OrderDate" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="FinalTotal" Type="Decimal" Precision="10" Scale="2" />
+    <NavigationProperty Name="Customer" Relationship="KajalPatel_01_07_2023Model.FK__Order__CustomerI__5165187F" FromRole="Order" ToRole="Customer" />
+    <NavigationProperty Name="Payment" Relationship="KajalPatel_01_07_2023Model.FK__Order__PaymentId__5070F446" FromRole="Order" ToRole="Payment" />
+    <NavigationProperty Name="OrderDetail" Relationship="KajalPatel_01_07_2023Model.FK__OrderDeta__Order__5441852A" FromRole="Order" ToRole="OrderDetail" />
+  </EntityType>
+  <EntityType Name="OrderDetail">
+    <Key>
+      <PropertyRef Name="OrderDetailId" />
+    </Key>
+    <Property Name="OrderDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderId" Type="Int32" />
+    <Property Name="ItemId" Type="Int32" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="Discount" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="Total" Type="Decimal" Precision="10" Scale="2" />
+    <NavigationProperty Name="Item" Relationship="KajalPatel_01_07_2023Model.FK__OrderDeta__ItemI__5535A963" FromRole="OrderDetail" ToRole="Item" />
+    <NavigationProperty Name="Order" Relationship="KajalPatel_01_07_2023Model.FK__OrderDeta__Order__5441852A" FromRole="OrderDetail" ToRole="Order" />
+    <Property Name="Quantity" Type="Decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="Transactions">
+    <Key>
+      <PropertyRef Name="TransactionId" />
+    </Key>
+    <Property Name="TransactionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ItemId" Type="Int32" />
+    <Property Name="Quantity" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="TransactionDate" Type="DateTime" Precision="0" />
+    <Property Name="TypeId" Type="Int32" />
+    <NavigationProperty Name="Item" Relationship="KajalPatel_01_07_2023Model.FK__Transacti__ItemI__5812160E" FromRole="Transactions" ToRole="Item" />
+  </EntityType>
+  <Association Name="FK__Order__CustomerI__5165187F">
+    <End Type="KajalPatel_01_07_2023Model.Customer" Role="Customer" Multiplicity="0..1" />
+    <End Type="KajalPatel_01_07_2023Model.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderDeta__ItemI__5535A963">
+    <End Type="KajalPatel_01_07_2023Model.Item" Role="Item" Multiplicity="0..1" />
+    <End Type="KajalPatel_01_07_2023Model.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="ItemId" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transacti__ItemI__5812160E">
+    <End Type="KajalPatel_01_07_2023Model.Item" Role="Item" Multiplicity="0..1" />
+    <End Type="KajalPatel_01_07_2023Model.Transactions" Role="Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="ItemId" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order__PaymentId__5070F446">
+    <End Type="KajalPatel_01_07_2023Model.Payment" Role="Payment" Multiplicity="0..1" />
+    <End Type="KajalPatel_01_07_2023Model.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Payment">
+        <PropertyRef Name="PaymentId" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="PaymentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderDeta__Order__5441852A">
+    <End Type="KajalPatel_01_07_2023Model.Order" Role="Order" Multiplicity="0..1" />
+    <End Type="KajalPatel_01_07_2023Model.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="OrderId" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Exam">
+    <Key>
+      <PropertyRef Name="ExamId" />
+    </Key>
+    <Property Name="ExamId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ExamName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="StudentMaster" Relationship="KajalPatel_01_07_2023Model.FK__StudentMa__ExamI__5FB337D6" FromRole="Exam" ToRole="StudentMaster" />
+  </EntityType>
+  <EntityType Name="StudentDetails">
+    <Key>
+      <PropertyRef Name="StudentDetailId" />
+    </Key>
+    <Property Name="StudentDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SubjectId" Type="Int32" />
+    <Property Name="StudentId" Type="Int32" />
+    <Property Name="TotalMarks" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="MarkObtained" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Percentage" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="StudentMaster" Relationship="KajalPatel_01_07_2023Model.FK__StudentDe__Stude__6383C8BA" FromRole="StudentDetails" ToRole="StudentMaster" />
+    <NavigationProperty Name="Subject" Relationship="KajalPatel_01_07_2023Model.FK__StudentDe__Subje__628FA481" FromRole="StudentDetails" ToRole="Subject" />
+  </EntityType>
+  <EntityType Name="StudentMaster">
+    <Key>
+      <PropertyRef Name="StudentId" />
+    </Key>
+    <Property Name="StudentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ExamId" Type="Int32" />
+    <Property Name="ClassName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="RollNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Exam" Relationship="KajalPatel_01_07_2023Model.FK__StudentMa__ExamI__5FB337D6" FromRole="StudentMaster" ToRole="Exam" />
+    <NavigationProperty Name="StudentDetails" Relationship="KajalPatel_01_07_2023Model.FK__StudentDe__Stude__6383C8BA" FromRole="StudentMaster" ToRole="StudentDetails" />
+  </EntityType>
+  <EntityType Name="Subject">
+    <Key>
+      <PropertyRef Name="SubjectId" />
+    </Key>
+    <Property Name="SubjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SubjectName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="StudentDetails" Relationship="KajalPatel_01_07_2023Model.FK__StudentDe__Subje__628FA481" FromRole="Subject" ToRole="StudentDetails" />
+  </EntityType>
+  <Association Name="FK__StudentMa__ExamI__5FB337D6">
+    <End Type="KajalPatel_01_07_2023Model.Exam" Role="Exam" Multiplicity="0..1" />
+    <End Type="KajalPatel_01_07_2023Model.StudentMaster" Role="StudentMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Exam">
+        <PropertyRef Name="ExamId" />
+      </Principal>
+      <Dependent Role="StudentMaster">
+        <PropertyRef Name="ExamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__StudentDe__Stude__6383C8BA">
+    <End Type="KajalPatel_01_07_2023Model.StudentMaster" Role="StudentMaster" Multiplicity="0..1" />
+    <End Type="KajalPatel_01_07_2023Model.StudentDetails" Role="StudentDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentMaster">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="StudentDetails">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__StudentDe__Subje__628FA481">
+    <End Type="KajalPatel_01_07_2023Model.Subject" Role="Subject" Multiplicity="0..1" />
+    <End Type="KajalPatel_01_07_2023Model.StudentDetails" Role="StudentDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="SubjectId" />
+      </Principal>
+      <Dependent Role="StudentDetails">
+        <PropertyRef Name="SubjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Customer1">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="OrderDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Orders" Relationship="KajalPatel_01_07_2023Model.FK__Orders__Customer__72C60C4A" FromRole="Customer1" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="CustomerId" Type="Int32" />
+    <NavigationProperty Name="Customer1" Relationship="KajalPatel_01_07_2023Model.FK__Orders__Customer__72C60C4A" FromRole="Orders" ToRole="Customer1" />
+  </EntityType>
+  <Association Name="FK__Orders__Customer__72C60C4A">
+    <End Type="KajalPatel_01_07_2023Model.Customer1" Role="Customer1" Multiplicity="0..1" />
+    <End Type="KajalPatel_01_07_2023Model.Orders" Role="Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer1">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

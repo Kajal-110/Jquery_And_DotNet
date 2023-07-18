@@ -1,0 +1,212 @@
+﻿@model IEnumerable<RestaurantApp.Models.Customer1>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" data-backdrop="static" data-keyboard="false">
+    New Order
+</button>
+<br />
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+<div class="modal" id="myModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="modal-header">
+                    <h4 style="color:red">Customer Details</h4>
+                    <hr />
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label>Customer Name</label>
+                            <div class="col-md-10">
+                                <input type="text" id="CustomerName" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>Customer Address</label>
+                            <div class="col-md-10">
+                                <input type="text" id="CustomerAddress" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal-body">
+                <h4 style="color:red">Order Details</h4>
+                <hr />
+                @*<input type="number" id="Id" class="form-control" hidden />*@
+                <label>Product Name</label>
+                <input type="text" id="ProductName" class="form-control" />
+                <label>Price</label>
+                <input type="text" id="Price" class="form-control" />
+                <label>Quantity </label>
+                <input type="number" id="Quantity" class="form-control" />
+                <br />
+                <button type="button" class="btn-close btn btn-primary" id="AddToList">Add To List</button>
+
+            </div>
+
+            <hr />
+            <h4 style="color:red">List of Order Details</h4>
+            <table id="TableDetails" class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Unit Price</th>
+                        <th>Quantity</th>
+                        <th>Amount</th>
+                        <th>Action</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn-close btn btn-danger" id="SaveOrder"> Save Order</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+         
+        </div>
+
+       
+    </div>
+
+   
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        console.log("heloo");
+        $("#AddToList").click(function () {
+            //e.preventDefault();
+
+            //if ($.trim($("#ProductName").val()) == "" || $.trim($("#Price").val()) == "" || $.trim($("#Quantity").val()) == "")
+            let Id = $("#Id").val();
+            let ProductName = $("#ProductName").val();
+            let Price = $("#Price").val();
+            let Quantity = $("#Quantity").val();
+            let Amount = Price * Quantity
+            console.log("hellooooooooooo");
+
+            if ($("#ProductName").val() == "") {
+                $("#ProductName").focus();
+                alert("Please fill the ProductName");
+                return;
+            }
+
+            console.log(ProductName, Price, Quantity)
+            let TableDetailsBody = $("#TableDetails tbody");
+            var ProductItem = '<tr><td hidden>' + Id + '</td><td>' + ProductName + '</td><td>' + Price + '</td><td>' + Quantity + '</td><td>' + Amount + '</td><td><button type="button" class="btn btn-info">Edit</button><button type="button" class="btn btn-danger deleteButton" )">Delete</button></tr> ';
+            TableDetailsBody.append(ProductItem);
+            Reset();
+        })
+
+
+        $('tbody').on('click', '.deleteButton', function () {
+            if (confirm("Do you want to delete this button?")) {
+                         $(this).closest('tr').remove();                
+            }
+        });
+
+
+        $("#SaveOrder").click(function () {
+            var orderArr = [];
+            orderArr.length = 0;
+            $.each($("#TableDetails tbody tr"), function () {
+                orderArr.push({
+                    ProductName: $(this).find("td:eq(0)").html(),
+                    Quantity: $(this).find("td:eq(1)").html(),
+                    Price: $(this).find("td:eq(2)").html(),
+                    Amount: $(this).find("td:eq(3)").html(),
+                });
+            });
+            var data = JSON.stringify({
+                Name: $("#CustomerName").val(),
+                Address: $("#CustomerAddress").val(),
+                order: orderArr
+            })
+
+            $.when(SaveOrder(data)).then(function (res) {
+                console.log(res);
+            }).fail(function (err) {
+                console.log(err);
+            });
+        });
+    })
+    function SaveOrder(data) {
+        return $.ajax({
+            async: true,
+            type: "POST",
+            dataType: "JSON",
+            contentType: "application/json; charset=utf-8",           
+            url: "/Orders/Create",
+            data: data,
+            success: function (result) {
+                alert(result);
+                location.reload();
+            },
+            error: function () {
+                console.log("Error");
+            }
+        });
+    }
+
+
+    function Reset() {
+        $("#ProductName").val("");
+        $("#Price").val("");
+        $("#Quantity").val("");
+    }
+</script>

@@ -1,0 +1,316 @@
+﻿@model RestaurantApp.Models.StudentMasterModel
+
+@{
+    ViewBag.Title = "Index";
+}
+<br />
+<br />
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" data-backdrop="static" data-keyboard="false">
+    New Student Mark
+</button>
+
+<div class="modal" id="myModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Student Result</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control",id="txtName" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ExamId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.ExamId, ViewBag.ItemList as SelectList, "--Select Team", new { @class = "form-control", id = "txtExam" })
+                            @Html.ValidationMessageFor(model => model.ExamId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ClassName, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ClassName, new { htmlAttributes = new { @class = "form-control" , id = "txtClassName" } })
+                            @Html.ValidationMessageFor(model => model.ClassName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.RollNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.RollNumber, new { htmlAttributes = new { @class = "form-control" , id = "txtRollNumber" } })
+                            @Html.ValidationMessageFor(model => model.RollNumber, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+
+                <fieldset>
+                    <legend>Student Marks</legend>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SubjectId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.SubjectId, ViewBag.SubjectList as SelectList, "--Select Subject--", new { @class = "form-control", id = "txtSubjectId" })
+                            @Html.ValidationMessageFor(model => model.SubjectId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TotalMarks, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.TotalMarks, new { htmlAttributes = new { @class = "form-control" , id = "txtTotalMark" } })
+                            @Html.ValidationMessageFor(model => model.TotalMarks, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MarkObtained, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.MarkObtained, new { htmlAttributes = new { @class = "form-control", id = "txtMarkObtained" } })
+                            @Html.ValidationMessageFor(model => model.MarkObtained, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-info" id="AddStudentBtn" style="float:right">Add To List </button>
+                    </div>
+
+                    <table class="table table-responsive" id="tableStudentMark">
+                        <thead>
+                            <tr>
+                                <th hidden>SubjectId</th>
+                                <th>Subject</th>
+                                <th>Total Mark</th>
+                                <th>Marks Obtained</th>
+                                <th>Percentage</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </fieldset>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="saveBtn">Save</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<fieldset>
+    <legend>
+        Student Details
+    </legend>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Exam</th>
+                <th>Class Name</th>
+                <th>Roll Number</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        @foreach(var item in Model.ListOfStudentModel)
+            {
+                <tr>
+                    <td>@item.StudentName</td>
+                    <td>@item.ExamName</td>
+                    <td>@item.ClassName</td>
+                    <td>@item.RollNumber</td>
+                    <td><button type="button" class="btn btn-danger" onclick='StudentMark(@item.StudentId)'> Student Mark</button></td>
+                </tr>
+            }
+    </table>
+</fieldset>
+
+<fieldset>
+    <legend>
+        Student Mark
+    </legend>
+    <div id="divStudentMark">
+
+    </div>
+</fieldset>
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        //$("#dialog").dialog({
+        //    autoOpen: false,
+        //    model: true,
+        //    title: "Student Marks"
+        //});
+
+        $("#AddStudentBtn").click(function () {
+            AddMarksIntoTable();
+        });
+        $("#saveBtn").click(function () {
+            AddStudentMarkInDB();
+        });
+    });
+
+    function StudentMark(txtStudentId) {
+        alert(txtStudentId);
+        
+        $.ajax({
+            async: true,
+            type: "GET",
+            dataType: "HTML",            
+            data: { StudentId: txtStudentId },
+            success: function (data) {
+                $("#divStudentMark").html(data);
+              
+            },
+            error: function () {
+                alert("Error...");
+            }
+        });
+    }
+
+    function RemoveStudent(txtStudentId) {
+        $(txtStudentId).closest("tr").remove();
+    }
+
+    function ResetMarkDetailsAfterSaving() {
+        $("#txtName").val('');
+        $("#txtExam").val(1);
+        $("#txtClassName").val('');
+        $("#txtRollNumber").val('');
+        $("#tableStudentMark").find("tr:gt(0)").remove();
+        ResetMarkList();
+        $("#txtName").focus();
+    }
+
+    function ResetMarkList() {
+        $("#txtSubjectId").val(1);
+        $("#txtTotalMark").val('');
+        $("#txtMarkObtained").val('');
+    }
+
+
+    function AddMarksIntoTable() {
+        if ($("#txtSubjectId option:selected").text() === "") {
+            alert("Please select Subject.");
+            $("#txtSubjectId").focus();
+            return;
+        }
+        if ($("#txtTotalMark").val() === "") {
+            alert("Please Enter Mark.");
+            $("#txtTotalMark").focus();
+            return;
+        }
+        if ($("#txtMarkObtained").val() === "") {
+            alert("Please Enter Mark obtained.");
+            $("#txtMarkObtained").focus();
+            return;
+        }
+        if (parseInt($("#txtTotalMark").val()) < parseInt($("#txtMarkObtained").val())) {
+            alert("Mark obtained always should be less then total mark.");
+            $("#txtMarkObtained").focus();
+            return;
+        }
+
+        let  SubjectId = $("#txtSubjectId").val();
+        let tableMarks = $("#tableStudentMark").find("tr:gt(0)");
+        let isReturn = false
+        $.each(tableMarks, function () {
+            let ListedSubjctId = $(this).find("td:eq(0)").text();
+            let ListedSubjctName = $(this).find("td:eq(1)").text();
+
+            if (ListedSubjctId === SubjectId) {
+                alert('Subject : ' + ListedSubjctName + '  is already Listed');
+                isReturn = true;
+                return;
+            }
+        });
+
+        if (isReturn === true) {
+            return false;
+        }
+
+        let marksTable = $("#tableStudentMark").val();
+        //let SubjectId = $("#txtSubjectId").val();
+        let SubjectName = $("#txtSubjectId option:selected").text();       
+        let TotalMark = $("#txtTotalMark").val();
+        let MarkObtained = $("#txtMarkObtained").val();
+        let Percentage = (parseInt(MarkObtained) / parseInt(TotalMark)) * 100;
+        //console.log(TotalMark, MarkObtained, Percentage);
+        let RowValue = "<tr><td hidden>" + SubjectId+"</td><td>" + SubjectName + "</td><td>" + TotalMark + "</td><td>" + MarkObtained + "</td><td>" + Percentage + "</td><td><input type='button' value='Remove' name='Remove' onclick='RemoveStudent(this)' class='btn btn-primary btn-sm'/></td></tr> ";
+        $("#tableStudentMark").append(RowValue);
+        ResetMarkList();
+        
+    }
+
+    function AddStudentMarkInDB() {
+        let studentViewModel = {};
+        let listOfStudentMark = [];
+        
+        let tableMark = $("#tableStudentMark").find("tr:gt(0)");
+
+        //studentViewModel.StudentName = StudentName;
+        //studentViewModel.ClassName = ClassName;
+        //studentViewModel.ExamId = ExamId;
+        //studentViewModel.RollNumber = RollNumber;
+
+        $.each(tableMark, function () {
+            let StudentMark = {};
+            let TotalMark = $("#txtTotalMark").val();
+            let MarkObtained = $("#txtMarkObtained").val();
+            console.log($("#txtStudentId").val());
+
+            StudentMark.StudentId = $("#txtStudentId").val()
+            StudentMark.SubjectId = $(this).find("td:eq(0)").text();
+            StudentMark.TotalMarks = $(this).find("td:eq(2)").text();
+            StudentMark.MarkObtained = $(this).find("td:eq(3)").text();
+            StudentMark.Percentage = $(this).find("td:eq(4)").text();
+            listOfStudentMark.push(StudentMark);
+            console.log(listOfStudentMark);
+        });
+
+        studentViewModel.StudentName = $("#txtName").val();
+        studentViewModel.ClassName = $("#txtClassName").val();
+        studentViewModel.ExamId = $("#txtExam").val();
+        studentViewModel.RollNumber = $("#txtRollNumber").val();
+        studentViewModel.ListOfStudentMark = listOfStudentMark;
+        console.log(studentViewModel);
+
+        $.ajax({
+            async: true,
+            type: "POST",
+            dataType: "JSON",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(studentViewModel),
+            url: "/StudentExamReport/Create",
+            success: function (data) {
+                //console.log(data);
+                if (data.status == true) {
+                    alert(data.message);
+                    ResetMarkDetailsAfterSaving();
+                }
+            },
+            error: function () {
+                alert("Error...");
+            }
+        });
+    }
+</script>
+
+

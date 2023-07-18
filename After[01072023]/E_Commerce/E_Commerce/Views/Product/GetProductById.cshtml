@@ -1,0 +1,68 @@
+﻿@model E_Commerce.Models.Model.ProductModel
+
+@{
+    ViewBag.Title = "GetProductById";
+    Layout = "~/Views/Shared/AdminPanal.cshtml";
+}
+
+<h2>GetProductById</h2>
+
+<div>
+    <h4>ProductModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product_Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product_Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.categoryId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.categoryId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product_Image)
+        </dt>
+
+        <dd>
+            <img src="@Url.Content(Model.Product_Image)" width="200" height="200" />
+            @*@Html.DisplayFor(model => model.Product_Image)*@
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "ProductList")
+</p>

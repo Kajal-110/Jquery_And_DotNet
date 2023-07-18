@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="22bcf7c5d0fd4c988ca7147e8e42b812" Name="Diagram1">
+        <EntityTypeShape EntityType="KajalPatel_01_07_2023Model.City" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="KajalPatel_01_07_2023Model.Country" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KajalPatel_01_07_2023Model.Registration" Width="1.5" PointX="7.5" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="KajalPatel_01_07_2023Model.State" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <AssociationConnector Association="KajalPatel_01_07_2023Model.FK__City__CountryId__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="KajalPatel_01_07_2023Model.FK__City__StateId__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="KajalPatel_01_07_2023Model.FK__Registrat__CityI__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="KajalPatel_01_07_2023Model.FK__Registrat__Count__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="KajalPatel_01_07_2023Model.FK__State__CountryId__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="KajalPatel_01_07_2023Model.FK__Registrat__State__3B75D760" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="KajalPatel_01_07_2023Model.Image" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="KajalPatel_01_07_2023Model.MiltipleAttachment" Width="1.5" PointX="3.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

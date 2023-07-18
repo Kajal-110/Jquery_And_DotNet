@@ -1,0 +1,10 @@
+﻿#imageid{
+    height: 50px;
+    width: 50px;
+    display: flex;
+    flex-direction: row-reverse;
+    margin-left:500px;
+}
+
+body {
+}
